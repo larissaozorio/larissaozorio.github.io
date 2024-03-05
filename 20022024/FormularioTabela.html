@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="estilos.css">
+    <title>Formulário de cadastro e Tabela com dados</title>
+</head>
+<body>
+    <div class="menu">
+        <a href="inicio.html">Início</a>
+        <a href="busca.html">Busca</a>
+        <a href="FormularioTabela.html">Formulário/Tabela</a>
+        <a href="PostagemComImagem.html">Postagem c/ Imagem</a>
+    </div>
+    <div class="container">
+        <h1>Formulário de cadastro e Tabela com dados</h1>
+        <div class="form-tabela-container">
+            <div class="form-container">
+                <form id="meuFormulario">
+                    <label for="nome">Nome Completo:</label>
+                    <input type="text" id="nome" name="nome" required>
+
+                    <label for="telefone">Telefone:</label>
+                    <input type="tel" id="telefone" name="telefone" required>
+
+                    <label for="email">E-mail:</label>
+                    <input type="email" id="email" name="email" required>
+
+                    <label for="estado">Estado de residência:</label>
+                    <select id="estado" name="estado">
+                    <option value="SP">SP</option>
+                    <option value="Outros">Outros</option>
+                   </select>
+                   <p></p>
+                   <p></p>
+
+                    <button class="enviar-btn" onclick="enviarFormulario()">Enviar</button>
+                    <button class="limpar-btn" onclick="limparFormulario()">Limpar</button>
+                </form>
+            </div>
+
+            <div class="tabela-container">
+                <table id="tabela">
+                    <thead>
+                        <tr>
+                            <th>Nome Completo</th>
+                            <th>Telefone</th>
+                            <th>E-mail</th>
+                            <th>Estado</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabelaCorpo">
+                        <!-- Dados da tabela serão adicionados dinamicamente aqui -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script>
+      function enviarFormulario() {
+          // Captura os valores do formulário
+          var nome = document.getElementById("nome").value;
+          var telefone = document.getElementById("telefone").value;
+          var email = document.getElementById("email").value;
+          var estado = document.getElementById("estado").value;
+
+          // Verifica se o e-mail contém "@"
+          if (!validarEmail(email)) {
+              alert("Por favor, insira um e-mail válido.");
+              return;
+          }
+
+          // Adiciona os valores na tabela
+          var tabelaCorpo = document.getElementById("tabelaCorpo");
+          var novaLinha = tabelaCorpo.insertRow();
+          var celulaNome = novaLinha.insertCell(0);
+          var celulaTelefone = novaLinha.insertCell(1);
+          var celulaEmail = novaLinha.insertCell(2);
+          var celulaEstado = novaLinha.insertCell(3);
+
+          celulaNome.innerHTML = nome;
+          celulaTelefone.innerHTML = telefone;
+          celulaEmail.innerHTML = email;
+          celulaEstado.innerHTML = estado;
+
+          // Limpa o formulário após a inserção
+          limparFormulario();
+      }
+
+      function limparFormulario() {
+          document.getElementById("meuFormulario").reset();
+      }
+
+      function validarFormulario() {
+          var nome = document.getElementById("nome").value;
+          var telefone = document.getElementById("telefone").value;
+          var email = document.getElementById("email").value;
+          var estado = document.getElementById("estado").value;
+
+          // Verifica se todos os campos estão preenchidos
+          if (nome === "" || telefone === "" || email === "" || estado === "") {
+              alert("Por favor, preencha todos os campos antes de enviar.");
+              return false;
+          }
+
+          // Verifica se o e-mail contém "@"
+          if (!validarEmail(email)) {
+              alert("Por favor, insira um e-mail válido.");
+              return false;
+          }
+
+          return true;
+      }
+
+      function validarEmail(email) {
+          // Verifica se o e-mail contém "@"
+          return email.includes("@");
+      }
+  </script>
+</body>
+</html>

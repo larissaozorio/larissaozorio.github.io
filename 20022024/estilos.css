@@ -1,0 +1,122 @@
+/* estilos.css */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.menu {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: #3498db;
+    color: #fff;
+    padding: 15px 0;
+    text-align: right;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.menu a {
+    text-decoration: none;
+    color: #fff;
+    margin: 0 20px;
+    transition: color 0.3s ease-in-out;
+}
+
+.menu a:hover {
+    color: #ffcc00;
+}
+
+.container {
+    margin-top: 80px; /* Ajusta o espaço para conteúdo não ficar escondido sob o menu */
+    text-align: center;
+}
+
+.postagem-container {
+    margin-top: 80px; /* Ajusta o espaço para conteúdo não ficar escondido sob o menu */
+    text-align: left;
+    margin: 0 20px;
+}
+
+.texto-container {
+    margin-top: 80px; /* Ajusta o espaço para conteúdo não ficar escondido sob o menu */
+    text-align: left;
+    margin: 0 20px;
+}
+
+h1 {
+    text-align: center;
+}
+
+.form-tabela-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    background-color: #f2f2f2;
+    padding: 20px;
+}
+
+.form-container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+form label {
+    margin-bottom: 10px;
+}
+
+form input {
+    padding: 8px;
+    margin-bottom: 15px;
+}
+
+form button {
+    padding: 10px 15px;
+    color: #fff;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    margin-right: 10px;
+    transition: background-color 0.1s ease-in-out;
+}
+
+form button.enviar-btn {
+    background-color: #4caf50; /* Verde */
+}
+
+form button.limpar-btn {
+    background-color: #f4d03f; /* Amarelo */
+}
+
+
+.tabela-container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+table, th, td {
+    border: 1px solid #ddd;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+}
+
+th {
+    background-color: #3498db;
+    color: #fff;
+}
