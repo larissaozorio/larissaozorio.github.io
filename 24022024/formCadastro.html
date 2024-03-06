@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="estilos.css"> <!-- Certifique-se de incluir seu arquivo de estilos -->
+    <link rel="stylesheet" href="estiloFormCad.css">
     <title>Formulário de Cadastro</title>
 </head>
 <body>
@@ -49,9 +49,9 @@
                 <div>
                     <label for="cidade">Cidade:</label>
                     <select id="cidade" name="cidade" required>
-                        <option value="opcao1">Opção 1</option>
-                        <option value="opcao2">Opção 2</option>
-                        <option value="opcao3">Opção 3</option>
+                        <option value="opcao1">Votuporanga</option>
+                        <option value="opcao2">Fernandópolis</option>
+                        <option value="opcao3">Outros</option>
                     </select>
                 </div>
 
@@ -64,12 +64,18 @@
                     <label for="contratoAssinado">Contrato Assinado (PDF, DOC, DOCX):</label>
                     <input type="file" id="contratoAssinado" name="contratoAssinado" accept=".pdf, .doc, .docx" required>
                 </div>
-            </div>
+                <div class="botoes-container">
+                    <button type="submit" class="cadastrar-btn">Cadastrar</button>
+                    
+                </div>
 
-            <div class="botoes-container">
-                <button type="submit" class="cadastrar-btn">Cadastrar</button>
-                <button type="button" onclick="limparFormulario()" class="limpar-btn">Limpar</button>
+                <div class="botoes-container">
+                    
+                    <button type="button" onclick="limparFormulario()" class="limpar-btn">Limpar</button>
+                </div>
             </div>
+ 
+            
         </form>
 
         <div id="tabelaContainer">
@@ -90,7 +96,7 @@
                     </tr>
                 </thead>
                 <tbody id="tabelaCorpo">
-                    <!-- Dados da tabela serão adicionados dinamicamente aqui -->
+                   
                 </tbody>
             </table>
         </div>
@@ -141,7 +147,7 @@
             // Limpa o formulário após a inserção
             limparFormulario();
 
-            return false; // Impede o envio tradicional do formulário
+            return false; // Impede do formulário
         }
 
         function limparFormulario() {
@@ -149,13 +155,10 @@
         }
 
         function validarCPF(cpf) {
-            // Implemente a lógica de validação de CPF
-            // Aqui está um exemplo simples apenas para fins de demonstração
             return /^\d{11}$/.test(cpf);
         }
 
         function validarEmail(email) {
-            // Verifica se o e-mail contém "@"
             return email.includes("@");
         }
     </script>
