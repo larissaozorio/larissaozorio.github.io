@@ -135,3 +135,25 @@ button[type="submit"] {
 button[type="submit"]:hover {
     background: #ff9900;
 }
+
+.content-container {
+    background: rgba(20, 20, 20, 0.85);
+    padding: 40px;
+    border-radius: 16px;
+    box-shadow: 0 4px 32px rgba(0,0,0,0.5);
+    max-width: 800px;
+    margin: 100px auto;
+    color: white;
+    text-align: center;
+}
+
+.message {
+    color: #ff8000;
+    margin-top: 15px;
+    text-align: center;
+    font-size: 14px;
+}
+
+.hidden {
+    display: none;
+}
