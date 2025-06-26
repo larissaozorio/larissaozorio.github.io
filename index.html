@@ -2,31 +2,37 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>MANGO - Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Larissa Ozorio</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <nav class="navbar">
         <img src="https://i.imgur.com/cmnuGcL.png" alt="Logo Mango" class="logo">
-        <ul>
-            <li><a href="#">Início</a></li>
-            <li><a href="#">Portfólio</a></li>
-            <li><a href="#">Contato</a></li>
+        <ul id="navLinks">
+            <li><a href="index.html">Início</a></li>
+            <li><a href="portfolio.html">Portfólio</a></li>
+            <li><a href="https://wa.me/5517996806782" target="_blank">Contato</a></li>
+            <!-- Marketing Flash será adicionado após login via JavaScript -->
         </ul>
-        <a href="#" class="login-btn">Login</a>
+        <a href="#" class="login-btn" id="loginStatus">Login</a>
     </nav>
+    
     <main>
         <div class="login-container">
             <h2>Bem vindo(a)!</h2>
-            <form>
-                <input type="text" placeholder="usuário" required>
+            <form id="loginForm">
+                <input type="text" id="username" placeholder="usuário" required>
                 <div class="password-field">
-                    <input type="password" placeholder="senha" required>
-                    <span class="eye-icon">&#128065;</span>
+                    <input type="password" id="password" placeholder="senha" required>
+                    <span class="eye-icon" id="togglePassword">👁️</span>
                 </div>
                 <button type="submit">Vamo nessa!</button>
+                <p id="loginMessage" class="message"></p>
             </form>
         </div>
     </main>
+
+    <script src="script.js"></script>
 </body>
 </html>
