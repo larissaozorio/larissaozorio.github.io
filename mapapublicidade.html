@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Mapa de Publicidades - Votuporanga</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <style>
+    body { margin: 0; font-family: Arial, sans-serif; }
+    #map { height: 100vh; width: 100%; }
+    .popup-content { text-align: center; }
+    .popup-img {
+      width: 100%;
+      max-width: 250px;
+      border-radius: 8px;
+      margin-bottom: 8px;
+    }
+    .popup-buttons {
+      margin: 5px 0;
+    }
+    .popup-buttons button {
+      background: #23303d;
+      color: white;
+      border: none;
+      padding: 5px 10px;
+      margin: 0 5px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+  
+    .legenda-container {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+      padding: 20px;
+      z-index: 1000;
+      font-size: 14px;
+      max-width: 300px;
+    }
+
+    .legenda-titulo {
+      font-weight: bold;
+      margin-bottom: 6px;
+    }
+
+    .legenda-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 5px;
+    }
+
+    .legenda-cor {
+      width: 16px;
+      height: 24px;
+      margin-right: 8px;
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-image: url('https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-red.png');
+    }
+
+    .cor-outdoor   { background-image: url('https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-red.png'); }
+    .cor-banner    { background-image: url('https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-yellow.png'); }
+    .cor-pintura   { background-image: url('https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-orange.png'); }
+    .cor-led       { background-image: url('https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-black.png'); }
+    .cor-interno   { background-image: url('https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-green.png'); }
+
+    .toggle-button {
+      background: #23303d;
+      color: white;
+      border: none;
+      padding: 6px 10px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 14px;
+      margin-bottom: 8px;
+      width: 100%;
+    }
+
+  </style>
+</head>
+<body>
+  <div id="map"></div>
+
+
+  <!-- LEGENDA -->
+  <div class="legenda-container" id="legenda">
+    <button class="toggle-button" onclick="toggleLegenda()">Ocultar Legenda</button>
+    <div id="conteudo-legenda">
+      <div class="legenda-titulo">Legenda</div>
+      <div class="legenda-item"><div class="legenda-cor cor-outdoor"></div>Outdoor (vermelho)</div>
+      <div class="legenda-item"><div class="legenda-cor cor-banner"></div>Banner (amarelo)</div>
+      <div class="legenda-item"><div class="legenda-cor cor-pintura"></div>Pintura (laranja)</div>
+      <div class="legenda-item"><div class="legenda-cor cor-led"></div>Painel de LED (preto)</div>
+      <div class="legenda-item"><div class="legenda-cor cor-interno"></div>Interno (verde)</div>
+    </div>
+  </div>
+
+
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js">
+    // Função para esconder/mostrar legenda
+    function toggleLegenda() {
+      const conteudo = document.getElementById('conteudo-legenda');
+      const botao = document.querySelector('.toggle-button');
+      if (conteudo.style.display === 'none') {
+        conteudo.style.display = 'block';
+        botao.textContent = 'Ocultar Legenda';
+      } else {
+        conteudo.style.display = 'none';
+        botao.textContent = 'Mostrar Legenda';
+      }
+    }
+
+  </script>
+  <script>
+    const map = L.map('map').setView([-20.4232, -49.9784], 14); // Votuporanga
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '© OpenStreetMap contributors'
+    }).addTo(map);
+
+//Ponto1
+    const pontos = [
+      {
+        tipo: 'Banner',
+        local: 'A.V.A - Associação Votuporanguense De Aeromodelismo',
+        coords: [-20.382018353031373, -49.99055085102036],
+        imagens: ['https://i.imgur.com/ns9M6te.png', 'https://i.imgur.com/FcWGA2x.png'
+        ]
+      },
+//novo ponto2
+	{
+        tipo: 'Outdoor',
+        local: 'Outdoor - Av José Marão Filho',
+        coords: [-20.414471, -49.963472],
+        imagens: ['https://i.imgur.com/FV3zJ4m.png'
+        ]
+      	},
+//novo ponto 3
+	{
+        tipo: 'Outdoor',
+        local: 'Outdoor - Vicinal Herbert Vinicius Mequi',
+        coords: [-20.398194898133415, -49.95720855742671],
+        imagens: ['https://i.imgur.com/eTu7LAF.png'
+        ]
+      	},
+//novo ponto4
+	{
+        tipo: 'Outdoor',
+        local: 'Outdoor - Rotatória - Av. Dep. Aureo Ferreira',
+        coords: [-20.409898764715628, -49.96270213586259],
+        imagens: ['https://i.imgur.com/3WIWN7s.png'
+        ]
+      	},
+//novo ponto5
+	{
+        tipo: 'Painel de LED',
+        local: 'Painel de LED - Konstru',
+        coords: [-20.412937868750483, -49.9645073675763],
+        imagens: ['https://i.imgur.com/FV3zJ4m.png'
+        ]
+      	},
+//novo ponto6
+	{
+        tipo: 'Painel de LED',
+        local: 'Painel de LED - Saída - Rio Preto',
+        coords: [-20.41362351034486, -49.964713537254184],
+        imagens: ['https://i.imgur.com/FV3zJ4m.png'
+        ]
+      	},
+//novo ponto7
+	{
+        tipo: 'Outdoor',
+        local: 'Outdoor - Av. Francisco Ramalho de Mendonça',
+        coords: [-20.422402508135434, -49.95674239353237],
+        imagens: ['https://i.imgur.com/ZVxwJa4.jpeg'
+        ]
+     	},
+//novo ponto8
+	{
+        tipo: 'Interno',
+        local: 'Quiosque do Espeto',
+        coords: [-20.419833566594164, -49.95630251118578],
+        imagens: [
+          'https://i.imgur.com/FV3zJ4m.png'
+        ]
+     	},
+//novo ponto9
+	{
+        tipo: 'Interno',
+        local: 'Loja Maçonica',
+        coords: [-20.426958660334407, -49.963284817384356],
+        imagens: [
+          'https://i.imgur.com/FV3zJ4m.png'
+        ]
+      	},
+//novo ponto10
+	{
+        tipo: 'Outdoor',
+        local: 'Outdoor - Rua Tiete',
+        coords: [-20.423913908305302, -49.97348120288081],
+        imagens: ['https://i.imgur.com/LZBIM0S.jpeg'
+        ]
+      	},
+//novo ponto11
+	{
+        tipo: 'Painel de LED',
+        local: 'Painel de LED - Rádio Princesa',
+        coords: [-20.426260795349894, -49.97487833369845],
+        imagens: ['https://i.imgur.com/FV3zJ4m.png'
+        ]
+      	},
+//novo ponto12
+	{
+        tipo: 'Outdoor',
+        local: 'Outdoor - Rua Javari',
+        coords: [-20.427666974127476, -49.98327635498898],
+        imagens: ['https://i.imgur.com/k4c9fkr.jpeg'
+        ]
+      	},
+//novo ponto13
+	{
+        tipo: 'Outdoor',
+        local: 'Outdoor - Cremil',
+        coords: [-20.43212854828976, -49.99038862117175],
+        imagens: ['https://i.imgur.com/ravKcUT.jpeg'
+        ]
+      	},
+//novo ponto14
+	{
+        tipo: 'Banner',
+        local: 'Banner - Escola Passo a Passo',
+        coords: [-20.41157746664244, -49.97639677035565],
+        imagens: [
+          'https://i.imgur.com/FV3zJ4m.png'
+        ]
+      	},
+//novo ponto15
+	{
+        tipo: 'Interno',
+        local: 'Turcos Lanches',
+        coords: [-20.419596842861107, -49.9854457943183],
+        imagens: [
+          'https://i.imgur.com/FV3zJ4m.png'
+        ]
+      	},
+//novo ponto16
+	{
+        tipo: 'Interno',
+        local: 'Cinema',
+        coords: [-20.419515911533605, -49.975255952698944],
+        imagens: [
+          'https://i.imgur.com/FV3zJ4m.png'
+        ]
+      	},
+//novo ponto17
+	{
+        tipo: 'Interno',
+        local: 'Outdoor - Espeto do Alfredo',
+        coords: [-20.414681515667084, -49.98083604316989],
+        imagens: ['https://i.imgur.com/FV3zJ4m.png'
+        ]
+      	},
+//novo ponto18
+	{
+        tipo: 'Outdoor',
+        local: 'Outdoor - Alpha Center',
+        coords: [-20.42326510067112, -49.97408648466048],
+        imagens: ['https://i.imgur.com/v269ggL.png'
+        ]
+      	},
+//novo ponto19
+	{
+        tipo: 'Outdoor',
+        local: 'Fachada - Flash',
+        coords: [-20.416295981337512, -49.974153025264975],
+        imagens: ['https://i.imgur.com/eBDaNzm.jpeg'
+        ]
+      	}
+    ];
+	
+    // Ícones personalizados por tipo
+    const icons = {
+      'Outdoor': L.icon({
+        iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-red.png',
+        shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png',
+        iconSize: [25, 41],
+        iconAnchor: [12, 41],
+        popupAnchor: [1, -34],
+        shadowSize: [41, 41]
+      }),
+      'Pintura': L.icon({
+        iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-orange.png',
+        shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png',
+        iconSize: [25, 41],
+        iconAnchor: [12, 41],
+        popupAnchor: [1, -34],
+        shadowSize: [41, 41]
+      }),
+      'Painel de LED': L.icon({
+        iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-black.png',
+        shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png',
+        iconSize: [25, 41],
+        iconAnchor: [12, 41],
+        popupAnchor: [1, -34],
+        shadowSize: [41, 41]
+      }),
+      'Banner': L.icon({
+        iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-yellow.png',
+        shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png',
+        iconSize: [25, 41],
+        iconAnchor: [12, 41],
+        popupAnchor: [1, -34],
+        shadowSize: [41, 41]
+      }),
+	'Interno': L.icon({
+        iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-green.png',
+        shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png',
+        iconSize: [25, 41],
+        iconAnchor: [12, 41],
+        popupAnchor: [1, -34],
+        shadowSize: [41, 41]
+      })
+    };
+
+    pontos.forEach((ponto, index) => {
+      const popupHtml = `
+        <div class="popup-content">
+          <div class="popup-images">
+            <img src="${ponto.imagens[0]}" alt="${ponto.tipo}" class="popup-img" id="popup-img-${index}"/>
+            <div class="popup-buttons">
+              <button onclick="prevImage(${index})">◀️</button>
+              <button onclick="nextImage(${index})">▶️</button>
+            </div>
+          </div>
+          <strong>${ponto.tipo}</strong><br/>
+          <span>${ponto.local}</span>
+        </div>
+      `;
+
+      // Aplicando o ícone personalizado baseado no tipo do ponto
+      L.marker(ponto.coords, { icon: icons[ponto.tipo] }).addTo(map)
+        .bindPopup(popupHtml);
+    });
+
+    // Controle de imagens
+    const imagensPorPonto = pontos.map(p => p.imagens);
+    const indicesAtuais = Array(pontos.length).fill(0);
+
+    function updateImage(index) {
+      const imgElement = document.getElementById(`popup-img-${index}`);
+      imgElement.src = imagensPorPonto[index][indicesAtuais[index]];
+    }
+
+    function nextImage(index) {
+      indicesAtuais[index] = (indicesAtuais[index] + 1) % imagensPorPonto[index].length;
+      updateImage(index);
+    }
+
+    function prevImage(index) {
+      indicesAtuais[index] = (indicesAtuais[index] - 1 + imagensPorPonto[index].length) % imagensPorPonto[index].length;
+      updateImage(index);
+    }
+  
+    // Função para esconder/mostrar legenda
+    function toggleLegenda() {
+      const conteudo = document.getElementById('conteudo-legenda');
+      const botao = document.querySelector('.toggle-button');
+      if (conteudo.style.display === 'none') {
+        conteudo.style.display = 'block';
+        botao.textContent = 'Ocultar Legenda';
+      } else {
+        conteudo.style.display = 'none';
+        botao.textContent = 'Mostrar Legenda';
+      }
+    }
+
+  </script>
+</body>
+</html>
