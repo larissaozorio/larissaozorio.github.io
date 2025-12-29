@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useLocation } from 'wouter';
 import { LogOut, Home } from 'lucide-react';
+import FileManager from '@/components/FileManager';
 
 /**
  * Dashboard Page
@@ -162,16 +163,8 @@ export default function Dashboard() {
               </button>
             </div>
 
-            <div className="bg-gray-50 p-8">
-              <h3 className="text-xl font-bold text-charcoal mb-4">
-                Documentos
-              </h3>
-              <p className="text-gray-600 mb-6">
-                Acesso a portfólio completo, currículos e documentos profissionais.
-              </p>
-              <button className="px-6 py-2 border-2 border-orange-500 text-orange-500 font-semibold hover:bg-orange-500 hover:text-white transition-all duration-300">
-                Acessar
-              </button>
+            <div className="md:col-span-2">
+              <FileManager />
             </div>
 
             <div className="bg-gray-50 p-8">
