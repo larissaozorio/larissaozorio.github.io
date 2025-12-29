@@ -24,11 +24,9 @@ export default function NotFound() {
           <p className="text-xl text-gray-600 mb-12 max-w-2xl mx-auto">
             Desculpe, a página que você está procurando não existe ou foi movida.
           </p>
-          <Link href="/">
-            <a className="inline-flex items-center gap-3 px-8 py-4 bg-orange-500 text-white font-semibold hover:bg-orange-600 transition-all duration-300">
-              <ArrowLeft size={20} />
-              Voltar para Home
-            </a>
+          <Link href="/" className="inline-flex items-center gap-3 px-8 py-4 bg-orange-500 text-white font-semibold hover:bg-orange-600 transition-all duration-300">
+            <ArrowLeft size={20} />
+            Voltar para Home
           </Link>
         </div>
       </div>
