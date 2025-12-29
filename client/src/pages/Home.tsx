@@ -3,6 +3,7 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { ArrowRight } from 'lucide-react';
 import { useState } from 'react';
+import { useAuth } from '@/_core/hooks/useAuth';
 
 /**
  * Home Page
@@ -77,6 +78,7 @@ const categories = [
 
 export default function Home() {
   const [activeCategory, setActiveCategory] = useState('all');
+  const { user } = useAuth();
 
   const filteredProjects = activeCategory === 'all'
     ? projects
@@ -168,11 +170,9 @@ export default function Home() {
 
           {/* CTA para Portfólio Completo */}
           <div className="mt-20 text-center">
-            <Link href="/portfolio">
-              <a className="inline-flex items-center gap-3 px-8 py-4 border-2 border-orange-500 text-orange-500 font-semibold hover:bg-orange-500 hover:text-white transition-all duration-300">
-                Ver portfólio completo
-                <ArrowRight size={20} />
-              </a>
+            <Link href="/portfolio" className="inline-flex items-center gap-3 px-8 py-4 border-2 border-orange-500 text-orange-500 font-semibold hover:bg-orange-500 hover:text-white transition-all duration-300">
+              Ver portfólio completo
+              <ArrowRight size={20} />
             </Link>
           </div>
         </div>
