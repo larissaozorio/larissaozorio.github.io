@@ -39,12 +39,7 @@ export default function Header() {
             </Link>
           </nav>
 
-          {/* Login Button */}
-          <div className="hidden md:block">
-            <Link href="/psique" className="text-charcoal text-sm font-medium hover:text-orange-500 transition-colors duration-300">
-              Login
-            </Link>
-          </div>
+
 
           {/* Mobile Menu Button */}
           <button
@@ -69,9 +64,6 @@ export default function Header() {
             </Link>
             <Link href="/formacao" className="block py-3 text-charcoal font-medium hover:text-orange-500 transition-colors">
               Formação
-            </Link>
-            <Link href="/psique" className="block py-3 text-charcoal font-medium hover:text-orange-500 transition-colors">
-              Login
             </Link>
           </nav>
         )}
