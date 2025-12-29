@@ -1,6 +1,6 @@
-# Larissa | Portfólio Multidisciplinar
+# 🎨 Portfólio Larissa - Versão Estática
 
-Um site portfólio profissional e elegante que apresenta a trajetória multidisciplinar em Teatro, Design Gráfico, Marketing, Branding e Tecnologia.
+Um portfólio profissional moderno e elegante, desenvolvido com React, Tailwind CSS e Vite. **Pronto para ser deployado no GitHub Pages.**
 
 ## 🎨 Design e Conceito
 
@@ -52,48 +52,113 @@ site-larissa/
 └── README.md
 ```
 
-## 🚀 Como Rodar Localmente
+## 🚀 Como Usar
 
-### Pré-requisitos
+### 1. Pré-requisitos
 
-- Node.js (v18+)
-- pnpm (gerenciador de pacotes)
+- Node.js v18+
+- pnpm (ou npm/yarn)
 
-### Instalação
-
-1. **Clone ou extraia o projeto:**
-   ```bash
-   cd site-larissa
-   ```
-
-2. **Instale as dependências:**
-   ```bash
-   pnpm install
-   ```
-
-3. **Inicie o servidor de desenvolvimento:**
-   ```bash
-   pnpm dev
-   ```
-
-4. **Abra no navegador:**
-   - Acesse `http://localhost:3000`
-
-### Comandos Disponíveis
+### 2. Instalação
 
 ```bash
-# Desenvolvimento
-pnpm dev          # Inicia servidor de desenvolvimento
+# Extrair o arquivo
+unzip site-larissa.zip
+cd site-larissa
 
+# Instalar dependências
+pnpm install
+```
+
+### 3. Desenvolvimento Local
+
+```bash
+pnpm dev
+```
+
+O site estará disponível em `http://localhost:5173`
+
+### 4. Build para Produção
+
+```bash
+pnpm build
+```
+
+Os arquivos estáticos serão gerados em `dist/`
+
+## 📤 Deploy no GitHub Pages
+
+### Opção 1: Automático com GitHub Actions (Recomendado)
+
+1. Crie um arquivo `.github/workflows/deploy.yml`:
+
+```yaml
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+          
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 10.4.1
+          
+      - name: Install dependencies
+        run: pnpm install
+        
+      - name: Build
+        run: pnpm build
+        
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
+```
+
+2. Faça push para a branch `main`
+3. GitHub Actions fará o deploy automaticamente
+
+### Opção 2: Manual
+
+```bash
 # Build
-pnpm build        # Cria build de produção
+pnpm build
 
-# Preview
-pnpm preview      # Visualiza build de produção
+# Copiar arquivos de dist/ para a raiz ou para a branch gh-pages
+# Depois fazer push
+```
 
-# Verificação
-pnpm check        # Verifica erros de TypeScript
-pnpm format       # Formata código com Prettier
+### Configurar GitHub Pages
+
+1. Vá para **Settings** do repositório
+2. Navegue até **Pages**
+3. Em "Source", selecione **Deploy from a branch**
+4. Escolha a branch `gh-pages` e pasta `/ (root)`
+5. Salve
+
+Seu site estará disponível em: `https://larissaozorio.github.io`
+
+## 🛠️ Comandos Disponíveis
+
+```bash
+pnpm dev       # Inicia servidor de desenvolvimento
+pnpm build     # Cria build de produção
+pnpm preview   # Visualiza build localmente
+pnpm check     # Verifica erros TypeScript
+pnpm format    # Formata código com Prettier
 ```
 
 ## 📄 Páginas do Site
@@ -122,37 +187,16 @@ pnpm format       # Formata código com Prettier
 - Formação em marketing (3 cursos/certificações)
 - Seção de competências principais
 
-### 5. **Psique** (`/psique`)
-- Página de login com autenticação simples
-- Credenciais de teste incluídas
-- Design minimalista e elegante
 
-### 6. **Dashboard** (`/dashboard`)
-- Área privada para usuários autenticados
-- Resumo de projetos, clientes e experiência
-- Informações importantes (contato, localização, disponibilidade)
-- Acesso a conteúdos pessoais (notas, documentos, análises)
-- Mensagens recentes
 
-## 🔐 Autenticação
+## ✨ Características
 
-### Credenciais de Teste
-
-- **Usuário:** `larissa`
-- **Senha:** `psique2025`
-
-O sistema de autenticação utiliza localStorage para manter o estado de login. As credenciais são verificadas localmente no navegador.
-
-## 🎯 Funcionalidades Principais
-
-✅ **Navegação Responsiva:** Menu adaptável para mobile e desktop
-✅ **Portfólio Filtrável:** Filtros por categoria de projeto
-✅ **Sistema de Login:** Autenticação simples com Psique
-✅ **Dashboard Privado:** Área restrita para usuários autenticados
-✅ **Design Elegante:** Modernismo tipográfico com muito espaço em branco
-✅ **Animações Suaves:** Transições e hover effects refinados
-✅ **Tipografia em Escala:** Hierarquia clara com Playfair Display e Poppins
-✅ **Paleta de Cores Estratégica:** Cinza chumbo, laranja e amarelo sutil
+- ✨ **Design Minimalista Elegante** - Tipografia Poppins, paleta cinza chumbo + laranja
+- 📱 **Totalmente Responsivo** - Funciona perfeitamente em desktop, tablet e mobile
+- ⚡ **Performance Otimizada** - Vite + React 19 para carregamento ultra-rápido
+- 🎯 **Navegação Intuitiva** - Menu limpo e CTAs estratégicos
+- 📊 **Portfólio Filtrável** - Visualize projetos por categoria
+- 🎬 **Animações Suaves** - Transições elegantes e hover effects
 
 ## 🛠️ Tecnologias Utilizadas
 
@@ -184,19 +228,50 @@ Todas as cores e estilos globais estão definidos em `client/src/index.css`. Mod
 1. Coloque as imagens em `client/public/images/`
 2. Referencie-as com caminhos absolutos: `/images/nome-da-imagem.jpg`
 
-## 🚀 Deploy
+## 🌐 Domínio Personalizado
 
-O projeto pode ser facilmente deployado em plataformas como:
+Para usar um domínio personalizado no GitHub Pages:
 
-- **Vercel:** `vercel deploy`
-- **Netlify:** Conecte o repositório Git
-- **GitHub Pages:** Configure build estático
-- **Manus:** Utilize o botão Publish na interface
+1. Crie arquivo `CNAME` em `client/public/`:
+```
+seudominio.com
+```
 
-## 📞 Contato
+2. Configure o domínio nas configurações do GitHub Pages
+3. Atualize DNS do seu registrador
 
-Para dúvidas ou sugestões sobre o portfólio, entre em contato através das informações no site.
+## 📱 Responsividade
+
+O site é totalmente responsivo com breakpoints:
+- Mobile: < 640px
+- Tablet: 640px - 1024px
+- Desktop: > 1024px
+
+## ⚡ Performance
+
+- **Vite**: Build ultra-rápido
+- **React 19**: Renderização otimizada
+- **Tailwind CSS**: CSS purificado (apenas classes usadas)
+- **Code Splitting**: Carregamento eficiente
+
+## 🐛 Troubleshooting
+
+**Porta 5173 em uso:**
+```bash
+pnpm dev -- --port 3000
+```
+
+**Build com erro:**
+```bash
+rm -rf node_modules pnpm-lock.yaml
+pnpm install
+pnpm build
+```
+
+**GitHub Pages não atualiza:**
+- Limpe cache do navegador (Ctrl+Shift+Delete)
+- Aguarde alguns minutos pelo deploy
 
 ---
 
-**Desenvolvido com ❤️ usando React, Tailwind CSS e Vite**
+**Desenvolvido com ❤️ para Larissa**
